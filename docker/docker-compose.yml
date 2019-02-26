@@ -1,0 +1,31 @@
+version: '2'
+services:
+  redis-master:
+    image: redis:3.0-alpine
+
+  redis-slave:
+    image: redis:3.0-alpine
+    command: redis-server --slaveof redis-master 6379
+    links:
+      - redis-master
+
+  redis-sentinel:
+    build:
+      context: ./
+    image: lamoda/redis-sentinel:latest
+    links:
+      - redis-master
+
+  redis-sentinel2:
+    image: lamoda/redis-sentinel:latest
+    depends_on:
+      - redis-sentinel
+    links:
+      - redis-master
+
+  redis-sentinel3:
+    image: lamoda/redis-sentinel:latest
+    depends_on:
+      - redis-sentinel
+    links:
+      - redis-master

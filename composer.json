@@ -1,0 +1,33 @@
+{
+    "name": "lamoda/redis-sentinel",
+    "description": "Configuration wrapper for redis-sentinel or plain redis",
+    "type": "library",
+    "require": {
+        "php": "^7.1",
+        "jamescauwelier/psredis": "^1.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "phpunit/phpunit": "^7.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lamoda developers",
+            "homepage": "https://tech.lamoda.ru/"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Lamoda\\RedisSentinel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lamoda\\RedisSentinelTest\\": "tests/"
+        }
+    }
+}
