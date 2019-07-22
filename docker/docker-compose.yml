@@ -2,12 +2,16 @@ version: '2'
 services:
   redis-master:
     image: redis:3.0-alpine
+    ports:
+      - "6379"
 
   redis-slave:
     image: redis:3.0-alpine
     command: redis-server --slaveof redis-master 6379
     links:
       - redis-master
+    ports:
+      - "6379"
 
   redis-sentinel:
     build:
@@ -15,6 +19,8 @@ services:
     image: lamoda/redis-sentinel:latest
     links:
       - redis-master
+    ports:
+      - "26379"
 
   redis-sentinel2:
     image: lamoda/redis-sentinel:latest
@@ -22,6 +28,8 @@ services:
       - redis-sentinel
     links:
       - redis-master
+    ports:
+      - "26379"
 
   redis-sentinel3:
     image: lamoda/redis-sentinel:latest
@@ -29,3 +37,5 @@ services:
       - redis-sentinel
     links:
       - redis-master
+    ports:
+      - "26379"
