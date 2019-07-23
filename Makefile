@@ -9,7 +9,7 @@ php-cs-fix:
 	@./vendor/bin/php-cs-fixer fix -vvv
 
 up:
-	docker-compose -f docker/docker-compose.yml up -d
+	cd docker && docker-compose up -d
 
 down:
-	docker-compose -f docker/docker-compose.yml down -v
+	cd docker && docker-compose down -v
