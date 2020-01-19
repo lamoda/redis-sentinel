@@ -17,8 +17,6 @@ services:
     build:
       context: ./
     image: lamoda/redis-sentinel:latest
-    links:
-      - redis-master
     ports:
       - "26379"
 
@@ -26,8 +24,6 @@ services:
     image: lamoda/redis-sentinel:latest
     depends_on:
       - redis-sentinel
-    links:
-      - redis-master
     ports:
       - "26379"
 
@@ -35,7 +31,5 @@ services:
     image: lamoda/redis-sentinel:latest
     depends_on:
       - redis-sentinel
-    links:
-      - redis-master
     ports:
       - "26379"
