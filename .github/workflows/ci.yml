@@ -16,9 +16,9 @@ jobs:
       run: composer validate --strict
 
     - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
-        with:
-          php-version: "${{ matrix.php-version }}"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "${{ matrix.php-version }}"
 
     - name: Cache Composer packages
       id: composer-cache
