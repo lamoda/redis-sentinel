@@ -33,7 +33,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Update phpunit
-      if: startsWith(matrix.php, '7.1') || startsWith(matrix.php, '7.2')
+      if: startsWith(matrix.php, '7.1')
       run: |
         composer update --prefer-lowest
 
