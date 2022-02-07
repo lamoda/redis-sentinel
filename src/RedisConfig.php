@@ -21,6 +21,9 @@ final class RedisConfig
     /** @var string|null */
     private $connectionName;
 
+    /** @var string|null */
+    private $password;
+
     public function __construct(array $options = [])
     {
         $options = array_merge([
@@ -29,6 +32,7 @@ final class RedisConfig
             'protocol' => 'tcp',
             'dbIndex' => 0,
             'connectionName' => null,
+            'password' => null,
         ], $options);
 
         $this->host = $options['host'];
@@ -36,6 +40,7 @@ final class RedisConfig
         $this->protocol = $options['protocol'];
         $this->dbIndex = (int) $options['dbIndex'];
         $this->connectionName = $options['connectionName'];
+        $this->password = $options['password'];
     }
 
     public function getHost(): string
@@ -61,5 +66,10 @@ final class RedisConfig
     public function getConnectionName(): ?string
     {
         return $this->connectionName;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
     }
 }

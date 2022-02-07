@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lamoda\RedisSentinel;
 
 use PSRedis\Client;
+use PSRedis\Client\Adapter\Predis\PredisClientCreator;
+use PSRedis\Client\Adapter\PredisClientAdapter;
 use PSRedis\MasterDiscovery;
 
 class RedisLocator
@@ -59,10 +61,20 @@ class RedisLocator
             }
             $host = $url['host'] ?? $url['path'];
             $port = $url['port'] ?? 26379;
-            $sentinel = new Client($host, $port);
+
+            $redisClientAdapter = $this->getRedisClientAdapter();
+            $sentinel = new Client($host, $port, $redisClientAdapter);
+
             $masterDiscovery->addSentinel($sentinel);
         }
 
         return $masterDiscovery;
+    }
+
+    private function getRedisClientAdapter(): PredisClientAdapter
+    {
+        $clientFactory = new WithPasswordClientFactoryDecorator($this->redisConfig, new PredisClientCreator());
+
+        return new PredisClientAdapter($clientFactory, Client::TYPE_SENTINEL);
     }
 }
